@@ -48,7 +48,9 @@ export default {
       this.favorites.push(post)
     },
     removeFavorite(post) {
-      const index = this.favorites.find((favorite) => favorite.id === post.id)
+      const index = this.favorites.findIndex(
+        (favorite) => favorite.id === post.id
+      )
       this.favorites.splice(index, 1)
     },
   },
