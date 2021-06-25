@@ -1,27 +1,22 @@
 <template>
-  <v-container>
-    <v-btn @click="getUsers">getUsers(data)</v-btn>
-    <v-btn @click="getAllUsers">getUsers(all)</v-btn>
-  </v-container>
+  <div>
+    <Header />
+    <v-container>
+      <ul v-for="post in posts" :key="post.id">
+        <li>{{ post.title }}</li>
+      </ul>
+    </v-container>
+    <Footer />
+  </div>
 </template>
 
 <script>
 export default {
-  methods: {
-    async getUsers() {
-      const users = await this.$axios.$get(
-        'https://jsonplaceholder.typicode.com/users'
-      )
-      // eslint-disable-next-line no-console
-      console.log(users)
-    },
-    async getAllUsers() {
-      const users = await this.$axios.get(
-        'https://jsonplaceholder.typicode.com/users'
-      )
-      // eslint-disable-next-line no-console
-      console.log(users)
-    },
+  async asyncData({ $axios }) {
+    const posts = await $axios.$get(
+      'https://jsonplaceholder.typicode.com/posts'
+    )
+    return { posts }
   },
 }
 </script>
