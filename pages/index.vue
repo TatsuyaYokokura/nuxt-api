@@ -2,9 +2,9 @@
   <div>
     <Header />
     <v-container>
-      <ul v-for="post in posts" :key="post.id">
-        <li>{{ post.title }}</li>
-      </ul>
+      <v-row>
+        <PostsList v-for="post in posts" :key="post.id" :post="post" />
+      </v-row>
     </v-container>
     <Footer />
   </div>
@@ -20,5 +20,3 @@ export default {
   },
 }
 </script>
-
-<style></style>
