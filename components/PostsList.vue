@@ -16,7 +16,9 @@
       </v-list-item>
 
       <v-card-actions>
-        <v-btn outlined rounded text> Button </v-btn>
+        <v-btn icon :color="isFavorite" @click="switchFavorite">
+          <v-icon>mdi-heart</v-icon>
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-col>
@@ -28,6 +30,31 @@ export default {
     post: {
       type: Object,
       required: true,
+    },
+  },
+
+  data: () => ({
+    favorite: false,
+  }),
+
+  computed: {
+    isFavorite() {
+      if (this.favorite) {
+        return 'pink'
+      } else {
+        return ''
+      }
+    },
+  },
+
+  methods: {
+    switchFavorite() {
+      this.favorite = !this.favorite
+      if (this.favorite) {
+        this.$emit('addFavorite', this.post)
+      } else {
+        this.$emit('removeFavorite', this.post)
+      }
     },
   },
 }
