@@ -2,6 +2,20 @@
   <div>
     <Header />
     <v-container>
+      <v-row no-gutters>
+        <v-col cols="12">
+          <h3>お気に入り一覧</h3>
+          <template v-if="favorites.length === 0">
+            <p>お気に入りはありません</p>
+          </template>
+        </v-col>
+        <Favorite
+          v-for="favorite in favorites"
+          :key="favorite.id"
+          :favorite="favorite"
+        />
+      </v-row>
+
       <v-row>
         <PostsList
           v-for="post in posts"
